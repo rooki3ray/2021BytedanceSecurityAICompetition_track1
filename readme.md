@@ -1,6 +1,24 @@
 # 字节跳动安全AI挑战赛——色情导流用户识别
 
 团队名称：naivenlp
+    
+## 赛题描述
+
+- [比赛地址](https://security.bytedance.com/fe/ai-challenge#/challenge)
+- 输入：用户的特征，包括基础信息、投稿信息、行为信息。
+- 输出：用户的标签（1表示色情导流用户，0表示正常用户）
+- 评价指标采用$f_{\beta}$（取$\beta=0.3$）
+$$
+f_{\beta} = (1 + \beta^2)\frac{p*r}{\beta^2*p+r}
+$$
+### 数据构成
+
+- 用户基础信息
+    - 性别、粉丝数、个签、关注人数……
+- 用户投稿信息
+    - 视频标题、poi、省份、投稿时间
+- 用户行为信息
+    - 播放次数、点赞数、分享数……
 
 ## 测试环境
 
@@ -73,4 +91,17 @@ chmod +x run.sh
 
 总耗时约15分钟，请耐心等待。
 
-按时间排序，saved下最近的一个目录下的csv文件即为测试集的预测结果。# 2021BytedanceSecurityAICompetition_Stage1
+按时间排序，saved下最近的一个目录下的csv文件即为测试集的预测结果。# 2021BytedanceSecurityAICompetition_Track1
+
+## 方案说明
+
+- 特征工程
+    - log1p 数据平滑
+    - 类别特征（LabelEncoder）
+    - 时间特征（min-max 归一化）
+    - 文本特征（长度、WordVec）
+    - 交叉特征
+- 模型训练
+    - 10折lgb交叉验证，均值作为预测结果
+    - 伪标签
+- 最终分数线上第二（0.9906）。
