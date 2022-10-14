@@ -105,3 +105,7 @@ chmod +x run.sh
     - 10折lgb交叉验证，均值作为预测结果
     - 伪标签
 - 最终分数线上第二（0.9906）。
+
+## 相关仓库
+
+[2022BytedanceSecurityAICompetition_track1](https://github.com/entropy2333/2022BytedanceSecurityAICompetition_track1)
