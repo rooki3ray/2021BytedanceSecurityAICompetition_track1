@@ -7,10 +7,12 @@
 - [比赛地址](https://security.bytedance.com/fe/ai-challenge#/challenge)
 - 输入：用户的特征，包括基础信息、投稿信息、行为信息。
 - 输出：用户的标签（1表示色情导流用户，0表示正常用户）
-- 评价指标采用$f_{\beta}$（取$\beta=0.3$）
+- 评价指标采用 $f_{\beta}$（取 $\beta=0.3$）
+
 $$
-f_{\beta} = (1 + \beta^2)\frac{p*r}{\beta^2*p+r}
+f_{\beta} = (1 + \beta^2)\frac{\text{precision}\times \text{recall}}{\beta^2\times \text{precision}+\text{recall}}
 $$
+
 ### 数据构成
 
 - 用户基础信息
